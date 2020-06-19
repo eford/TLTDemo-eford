@@ -1,0 +1,70 @@
+
+# TLT Demo Lab
+This repository includes Jupyter notebooks that demonstrate a workflow for version controlling Jupyter notebooks.
+
+## The Quadratic Equation
+
+An equation of the form $ax^2 + bx + c = 0$ has two solutions given by
+$$\frac{-b\pm \sqrt{b^2-4ac}}{2a}$$
+
+In order to gain better understanding of this, it is useful to consider the function $f(x) = ax^2 + bx + c$.  
+We can write a *function* `f(x)` that takes one arguement `x` and returns the value of $f(x)$ using the current values of variables $a$, $b$, and $c$.
+
+```julia
+function f(x) 
+   return a*x^2 + b*x + c
+end
+```
+
+Now we can plot the function $f(x)$ using Julia's *Plots.jl* package.
+
+```julia
+using Plots
+```
+
+```julia
+function plot_parabola(a,b,c; num_points=100)
+   xmin = -b/(2a)-2
+   xmax = -b/(2a)+2
+   x = range(xmin,stop=xmax,length=num_points)
+   plot(x, map(f,x), xlimits=[xmin,xmax], xlabel="x", ylabel="y", legend=:none)
+end
+```
+
+```julia
+a = 1 
+b = -3
+c = 2 
+plot_parabola(a,b,c)
+```
+
+**Q1**: What values of $x$ result in $f(x)=0$?  Store your answer in the variables `q1_root1` and `q1_root2`.
+
+```julia
+# TODO: Replace with your responce to question 1.
+q1_root1 = 0
+q1_root2 = 0
+```
+
+We can rewrite $f(x)$ as $$f(x) = a(x-h)^2 + k,$$
+where $h = \frac{-b}{2a}$ is the value of $x$ that minimizes $f(x)$ and $k = ah^2+bh+c$ is the value of $f(x)$ at that minimum.  Therefore, $f(x)$ describes a parabola with its vertex at $(h,k)$.  
+
+**Q2**:  Write a function named `vertex` that takes the arguments $a$, $b$ and $c$ (in that order) and returns the vertex of the parabola stored as a named pair $(x,y)$.
+
+```julia
+# TODO: Update code below with your responce to question 2.
+function vertex(a,b,c) 
+    h = 0
+    k = 0
+    return (x=h,y=k)
+end
+```
+
+Test that the result of your function matches your expectation for the function $f(x) = x^2 - 3x + 2$ based on the plot above.
+
+```julia
+vertex(1,-3,2)
+```
+
+```julia
+```

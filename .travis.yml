@@ -1,0 +1,22 @@
+language: julia
+os:
+  - linux
+julia:
+  - 1.4
+
+# Keep the following only for the labN-dev version of the repository
+#branches:
+#  only:
+#    - solution
+
+# Replace with the following once make labN-start version of the respository
+branches:
+  except:
+  - original
+
+
+script:
+  - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
+  - julia -e 'using Pkg; Pkg.activate("."); Pkg.instantiate();'
+  - julia test/runtests.jl
+
